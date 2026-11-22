@@ -442,36 +442,69 @@ These are cached after the first download.
 
 ---
 
-## UI Walkthrough
+## Screenshots & UI Walkthrough
 
 The Gradio UI features a professional SaaS-style design with 5 tabs:
 
-### Home Page
-- Hero section with system status badges (Online/Offline, BLIP Ready, FAISS Memory)
-- KPI cards: Images processed, Avg CLIP Score, Total API Spend, Local inference %
-- Pipeline flow visualization showing all 10 processing nodes
-- Performance charts: tier distribution, quality scores, cumulative cost
+---
 
-### Caption Studio
-- Image upload with style dropdown (5 styles) and language selector (7 languages)
-- Real-time agent log with color-coded entries (green=pass, orange=escalate, blue=RAG)
-- Metrics table: Combined score, CLIP, LLM Judge, Verdict
-- Confidence bar (0-100) with explanation
-- Refinements panel: alt-text + SEO variants with copy buttons
-- Translation panel for non-English outputs
+### 1. Home Page
 
-### Visual QA
-- Multi-turn chat interface with image grounding
-- Session-aware conversation history
-- GPT-4o-mini powered visual understanding
+![Home Page](screenshots/01_home.png)
 
-### Analytics
-- KPI summary cards
-- Plotly charts: tier distribution (donut), style usage (horizontal bar), quality scores (bar with threshold line), response latency (color-coded bar)
+The **Home** page serves as the platform dashboard:
+- **Status badges** at the top show system health: Online/Offline mode, BLIP model readiness, FAISS memory status, and version
+- **KPI cards** display real-time metrics: total images processed, average CLIP quality score, total API spend, and percentage of captions generated locally via BLIP
+- **Pipeline flow** visualization shows all 10 processing nodes in order: INPUT &rarr; RAG+CLIP &rarr; COMPLEXITY &rarr; YOLO &rarr; BLIP-L1 &rarr; CRITIC &rarr; GPT-MINI &rarr; CRITIC &rarr; GPT-4O &rarr; REFINE
+- **Performance charts** at the bottom: Tier Distribution (donut chart), Quality Scores (bar chart with threshold line), and Cumulative Cost (area chart tracking API spend over time)
 
-### About
-- Feature cards documenting all 8 major capabilities
-- LangGraph decision flow diagram
+---
+
+### 2. Caption Studio
+
+![Caption Studio](screenshots/02_caption_studio.png)
+
+The **Caption Studio** is the main captioning interface:
+- **Left panel:** Image upload area (drag & drop or click), Caption Style dropdown (descriptive, creative, technical, concise, social_media), Output Language selector (7 languages), "Generate Caption" button, and "Compare All 5 Styles" button
+- **Right panel:** Generated caption text box, tier/latency/cost metadata chips, quality Metrics Table (Combined score, CLIP score, LLM Judge rating, Verdict), and a live **Agent Log** showing the step-by-step pipeline execution in real time (RAG retrieval, complexity analysis, YOLO detection, tier selection, critic evaluation, etc.)
+- After generation, additional panels appear: **Confidence Bar** (0-100 with explanation), **Refinements** (alt-text + SEO variants with copy buttons), and **Translation** output for non-English languages
+
+---
+
+### 3. Visual QA
+
+![Visual QA](screenshots/03_visual_qa.png)
+
+The **Visual QA** tab enables multi-turn conversational visual analysis:
+- **Left panel:** Image upload area and "New Session" button to reset conversation
+- **Right panel:** Chat-style conversation interface where you ask questions about the uploaded image
+- Powered by **GPT-4o-mini** with image grounding — the model sees the image and answers contextually
+- **Session-aware:** follow-up questions reference previous answers, enabling deep investigation of image contents
+- Badges indicate: Multi-turn, Image-grounded, Session-aware capabilities
+
+---
+
+### 4. Analytics Dashboard
+
+![Analytics](screenshots/04_analytics.png)
+
+The **Analytics** tab provides comprehensive performance monitoring:
+- **KPI cards** (same as Home): Images processed, Avg CLIP Score, Total API Spend, Local inference %
+- **Tier Distribution** (donut chart): Shows the split between BLIP (Tier 1), GPT-4o-mini (Tier 2), and GPT-4o (Tier 3) usage
+- **Style Usage** (horizontal bar chart): Which caption styles are used most frequently
+- **Quality Scores** (bar chart): Per-run CLIP scores with the 0.25 threshold line in red
+- **Response Latency** (bar chart): Per-run latency color-coded by speed (green < 1s, orange < 3s, red > 3s)
+- All charts are interactive (Plotly) with hover tooltips. Click **Refresh** for latest data.
+
+---
+
+### 5. About / Architecture
+
+![About](screenshots/05_about.png)
+
+The **About** page documents the platform architecture:
+- **8 feature cards** describing each major capability: 3-Tier Routing, Dual Quality Gates, FAISS RAG Memory, 5 Caption Styles, Visual QA, Smart Routing, Object Detection, Caption Refinement
+- **LangGraph Decision Flow** diagram showing the complete pipeline logic in pseudocode: `route_node` &rarr; `detect_objects_node` &rarr; `generate_caption_node` &rarr; `critique_node` with PASS/FAIL conditional branching to `refine_node` or `escalate_node`
 
 ---
 
