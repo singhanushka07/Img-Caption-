@@ -1,0 +1,2 @@
+{"ts": "2026-11-10T16:13:12.806214+00:00", "model": "gpt-4o-mini", "style": "descriptive", "tier": 2, "clip_score": 0.0, "judge_score": 9, "latency_ms": 6494.6, "cost_usd": 0.0006147, "escalations": 1, "caption_len": 1421, "img_hash": "fbc676e1"}
+{"ts": "2026-11-15T14:02:46.338289+00:00", "model": "gpt-4o-mini", "style": "descriptive", "tier": 2, "clip_score": 0.0, "judge_score": 8, "latency_ms": 13153.3, "cost_usd": 0.0006345, "escalations": 1, "caption_len": 1276, "img_hash": "c7ce9baa"}
